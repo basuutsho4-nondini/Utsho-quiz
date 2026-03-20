@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Utsho's Kingdom Pro</title>
+
+<style>
+body{
+    font-family: Arial;
+    background: linear-gradient(to right,#141e30,#243b55);
+    color:white;
+    text-align:center;
+}
+
+h1{color:gold;}
+
+.container{
+    max-width:600px;
+    margin:auto;
+    background:rgba(0,0,0,0.6);
+    padding:20px;
+    border-radius:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin:5px;
+    border:none;
+    border-radius:8px;
+    background:#00c6ff;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0072ff;
+    color:white;
+}
+
+#result{margin-top:10px;font-weight:bold;}
+</style>
+
+</head>
+
+<body>
+
+<h1>👑 Utsho's Kingdom 👑</h1>
+
+<div class="container">
+
+<div id="menu">
+<h2>Select Subject</h2>
+<button onclick="startQuiz('physics')">Physics</button>
+<button onclick="startQuiz('chemistry')">Chemistry</button>
+<button onclick="startQuiz('bangla')">Bangla</button>
+<button onclick="startQuiz('english')">English</button>
+</div>
+
+<div id="quiz" style="display:none;">
+<h3 id="timer">Time: 10</h3>
+<h3 id="progress"></h3>
+<div id="question"></div>
+<div id="answers"></div>
+<div id="result"></div>
+<h3>Score: <span id="score">0</span></h3>
+</div>
+
+</div>
+
+<script>
+
+let allQuestions = {
+physics:[
+{q:"Force formula?",a:["F=ma","E=mc2","V=IR","p=mv"],c:0},
+{q:"Speed unit?",a:["m/s","kg","N","J"],c:0},
+{q:"Gravity discover?",a:["Newton","Einstein","Tesla","Bohr"],c:0}
+],
+
+chemistry:[
+{q:"H2O ki?",a:["Acid","Water","Salt","Gas"],c:1},
+{q:"pH < 7?",a:["Acid","Base","Neutral","None"],c:0},
+{q:"NaCl ki?",a:["Acid","Salt","Base","Metal"],c:1}
+],
+
+bangla:[
+{q:"চর্যাপদ কি?",a:["কবিতা","গান","নাটক","গল্প"],c:0},
+{q:"বাংলা বর্ণমালা কয়টি?",a:["৫০","৪৯","৫২","৪৫"],c:2}
+],
+
+english:[
+{q:"Synonym of Happy?",a:["Sad","Joyful","Angry","Cry"],c:1},
+{q:"Verb ki?",a:["Action word","Name","Place","Thing"],c:0}
+]
+};
+
+let questions=[];
+let index=0;
+let score=0;
+let time=10;
+let timer;
+
+function startQuiz(subject){
+    questions=[];
+    
+    // 🔥 200 random question generate
+    for(let i=0;i<200;i++){
+        let q = allQuestions[subject][Math.floor(Math.random()*allQuestions[subject].length)];
+        questions.push(q);
+    }
+
+    document.getElementById("menu").style.display="none";
+    document.getElementById("quiz").style.display="block";
+
+    index=0;
+    score=0;
+
+    loadQuestion();
+}
+
+function loadQuestion(){
+    if(score>=20){
+        document.getElementById("question").innerHTML="🏆 YOU WIN!";
+        document.getElementById("answers").innerHTML="";
+        return;
+    }
+
+    let q=questions[index];
+    document.getElementById("question").innerText=q.q;
+    document.getElementById("progress").innerText="Question "+(index+1)+"/200";
+
+    let ansDiv=document.getElementById("answers");
+    ansDiv.innerHTML="";
+
+    q.a.forEach((ans,i)=>{
+        let btn=document.createElement("button");
+        btn.innerText=ans;
+        btn.onclick=()=>checkAnswer(i);
+        ansDiv.appendChild(btn);
+    });
+
+    startTimer();
+}
+
+function startTimer(){
+    time=10;
+    document.getElementById("timer").innerText="Time: "+time;
+
+    clearInterval(timer);
+    timer=setInterval(()=>{
+        time--;
+        document.getElementById("timer").innerText="Time: "+time;
+
+        if(time==0){
+            clearInterval(timer);
+            nextQuestion("⏰ Time Up!");
+        }
+    },1000);
+}
+
+function checkAnswer(i){
+    clearInterval(timer);
+
+    let q=questions[index];
+    if(i===q.c){
+        score++;
+        nextQuestion("✅ Correct!");
+    }else{
+        nextQuestion("❌ Wrong! Ans: "+q.a[q.c]);
+    }
+
+    document.getElementById("score").innerText=score;
+}
+
+function nextQuestion(msg){
+    document.getElementById("result").innerText=msg;
+
+    index++;
+    setTimeout(()=>{
+        document.getElementById("result").innerText="";
+        loadQuestion();
+    },1000);
+}
+
+</script>
+
+</body>
+  </html>
