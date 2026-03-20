@@ -70,4 +70,4 @@ setTimeout(()=>{
 document.getElementById("result").innerText="";
 loadQuestion();
 },1000);
-  }
+}
