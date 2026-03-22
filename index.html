@@ -471,7 +471,7 @@ function checkAnswer(i){
     let correct = currentData[currentQuestion].c;
 
     if(i === correct){
-        score += 5;
+        score += 1;
         document.getElementById("result").innerText = "✔ Correct!";
     } else {
         document.getElementById("result").innerText =
@@ -496,7 +496,7 @@ function nextQuestion(){
 
     currentQuestion++;
 
-    if(score >= 20){
+    if(score >= 50){
         alert("🎉 You Win!");
         location.reload();
         return;
