@@ -2,66 +2,61 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<title>Utshos Kingdom</title>
+<title>Utshos Kingdom Quiz</title>
 
 <style>
-body {
+body{
     font-family: Arial;
-    text-align: center;
-    background: #f2f2f2;
+    text-align:center;
+    background:#f2f2f2;
 }
 
-.container {
-    margin-top: 50px;
+h1{
+    margin-top:20px;
 }
 
-button {
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
+button{
+    padding:10px 15px;
+    margin:5px;
+    cursor:pointer;
 }
 
-#quizBox {
-    display: none;
-    margin-top: 20px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 60%;
-    margin-left: auto;
-    margin-right: auto;
+#quizBox{
+    display:none;
+    background:white;
+    width:60%;
+    margin:auto;
+    padding:20px;
+    border-radius:10px;
+    margin-top:20px;
 }
 </style>
-
 </head>
+
 <body>
 
-<div class="container">
-    <h1>👑 Utshos Kingdom 👑</h1>
+<h1>👑 Utshos Kingdom 👑</h1>
 
-    <h2>Select Subject:</h2>
+<!-- SUBJECT BUTTONS -->
+<button onclick="startQuiz('bangla')">Bangla</button>
+<button onclick="startQuiz('english')">English</button>
+<button onclick="startQuiz('physics')">Physics</button>
+<button onclick="startQuiz('chemistry')">Chemistry</button>
 
-    <button onclick="startQuiz('bangla')">Bangla</button>
-    <button onclick="startQuiz('english')">English</button>
-    <button onclick="startQuiz('physics')">Physics</button>
-    <button onclick="startQuiz('chemistry')">Chemistry</button>
+<div id="quizBox">
+    <h2>🔥 Utshos Quiz 🔥</h2>
 
-    <div id="quizBox">
-        <h2 style="color: green;">🔥 Utshos Quiz 🔥</h2>
+    <h3 id="question"></h3>
+    <div id="options"></div>
 
-        <h3 id="question"></h3>
-        <div id="options"></div>
-
-        <p id="timer"></p>
-        <p id="result"></p>
-        <p id="score"></p>
-    </div>
+    <p id="timer"></p>
+    <p id="result"></p>
+    <p id="score"></p>
 </div>
 
 <script>
 
-const questions = {
-    bangla: [
+const bangla =[
 {"q":"বাংলা সাহিত্যের প্রাচীনতম নিদর্শন কী?","a":["চর্যাপদ","শ্রীকৃষ্ণকীর্তন","মঙ্গলকাব্য","গীতাঞ্জলি"],"c":0},
 {"q":"চর্যাপদের ভাষা কী?","a":["প্রাকৃত","সংস্কৃত","বাংলা","অপভ্রংশ"],"c":3},
 {"q":"মঙ্গলকাব্যের প্রধান বৈশিষ্ট্য কী?","a":["ধর্মীয় কাহিনি","বিজ্ঞান","ইতিহাস","নাটক"],"c":0},
@@ -159,8 +154,9 @@ const questions = {
 {"q":"স্বরবর্ণ কয়টি?","a":["১১","১০","৯","১২"],"c":0},
 
 {"q":"ব্যঞ্জনবর্ণ কয়টি?","a":["৩৯","৩৮","৪০","৩৭"],"c":0}
-],
-    english: [
+];
+
+const english =[
 {"q":"What is a noun?","a":["Name of a person/place/thing","Action","Quality","None"],"c":0},
 {"q":"What is a verb?","a":["Action","Name","Place","Thing"],"c":0},
 {"q":"What is an adjective?","a":["Describes noun","Action","Name","None"],"c":0},
@@ -252,8 +248,72 @@ const questions = {
 {"q":"Which is correct?","a":["She is better","She better","She best","None"],"c":0},
 
 {"q":"Which is correct?","a":["More beautiful","Beautifuller","Most beautifuler","None"],"c":0}
-    ],
-    chemistry: [
+];
+
+const physics =[
+{"q":"নিউটনের প্রথম সূত্র কী নামে পরিচিত?","a":["জড়তার সূত্র","ভরবেগ সূত্র","শক্তি সূত্র","গতির সূত্র"],"c":0},
+{"q":"ভরবেগের একক কী?","a":["kgm/s","N","J","W"],"c":0},
+{"q":"কাজের সূত্র কী?","a":["F×d","m×a","v×t","p×v"],"c":0},
+{"q":"ক্ষমতার একক কী?","a":["Watt","Joule","Newton","Volt"],"c":0},
+{"q":"ত্বরণ কী?","a":["বেগের পরিবর্তন","বল","ভর","শক্তি"],"c":0},
+{"q":"আলোকবর্ষ কী নির্দেশ করে?","a":["দূরত্ব","সময়","বেগ","শক্তি"],"c":0},
+{"q":"মাধ্যাকর্ষণ আবিষ্কার করেন কে?","a":["নিউটন","আইনস্টাইন","গ্যালিলিও","টেসলা"],"c":0},
+{"q":"F=ma সূত্রটি কোন সূত্র?","a":["নিউটনের ২য় সূত্র","১ম সূত্র","৩য় সূত্র","শক্তি সূত্র"],"c":0},
+{"q":"বেগের একক কী?","a":["m/s","kg","N","J"],"c":0},
+{"q":"শক্তির SI একক কী?","a":["Joule","Watt","Newton","Ampere"],"c":0},
+
+{"q":"চাপের একক কী?","a":["Pascal","Newton","Joule","Volt"],"c":0},
+{"q":"তাপ শক্তি কী ধরনের শক্তি?","a":["অভ্যন্তরীণ শক্তি","যান্ত্রিক","রাসায়নিক","বিদ্যুৎ"],"c":0},
+{"q":"আলোর বেগ কত?","a":["3×10^8 m/s","10^6","10^5","10^7"],"c":0},
+{"q":"ভরের একক কী?","a":["kg","m","s","N"],"c":0},
+{"q":"সময় এর একক কী?","a":["second","meter","kg","watt"],"c":0},
+
+{"q":"নিউটনের তৃতীয় সূত্র কী?","a":["Action=Reaction","F=ma","E=mc²","p=mv"],"c":0},
+{"q":"গতিশক্তির সূত্র কী?","a":["½mv²","mv","F=ma","mgh"],"c":0},
+{"q":"স্থিতিশক্তির সূত্র কী?","a":["mgh","mv","½mv²","Fd"],"c":0},
+{"q":"বল কী?","a":["ধাক্কা বা টান","ভর","বেগ","শক্তি"],"c":0},
+{"q":"ঘর্ষণ বল কী?","a":["বিরোধী বল","সহায়ক বল","মাধ্যাকর্ষণ","চাপ"],"c":0},
+
+{"q":"বেগ ও ত্বরণ এক হলে কী হয়?","a":["uniform motion","rest","random","none"],"c":0},
+{"q":"বিদ্যুৎ প্রবাহের একক কী?","a":["Ampere","Volt","Ohm","Watt"],"c":0},
+{"q":"ভোল্টেজের একক কী?","a":["Volt","Ampere","Ohm","Joule"],"c":0},
+{"q":"প্রতিরোধের একক কী?","a":["Ohm","Volt","Ampere","Watt"],"c":0},
+{"q":"Ohm’s law কী?","a":["V=IR","F=ma","P=VI","E=mc²"],"c":0},
+
+{"q":"চৌম্বক ক্ষেত্র কী?","a":["Force field","Energy","Light","Heat"],"c":0},
+{"q":"লেন্স কয় প্রকার?","a":["২","৩","৪","৫"],"c":0},
+{"q":"উত্তল লেন্স কী করে?","a":["সংকেন্দ্রিত করে","বিচ্ছুরণ","শোষণ","প্রতিফলন"],"c":0},
+{"q":"অবতল লেন্স কী করে?","a":["বিচ্ছুরণ","সংকেন্দ্র","শোষণ","প্রতিফলন"],"c":0},
+
+{"q":"তড়িৎ শক্তির সূত্র কী?","a":["P=VI","F=ma","mv","Fd"],"c":0},
+{"q":"শব্দের বেগ কোথায় বেশি?","a":["solid","liquid","gas","vacuum"],"c":0},
+{"q":"শূন্যে শব্দ চলে কি?","a":["না","হ্যাঁ","কখনো","সবসময়"],"c":0},
+
+{"q":"তরঙ্গ কী?","a":["energy transfer","mass transfer","heat","none"],"c":0},
+{"q":"তরঙ্গের একক কী?","a":["Hz","m","s","kg"],"c":0},
+
+{"q":"ফ্রিকোয়েন্সি কী?","a":["oscillation per sec","speed","force","mass"],"c":0},
+{"q":"গ্র্যাভিটি কত?","a":["9.8","10","8","7"],"c":0},
+
+{"q":"তড়িৎ শক্তির একক?","a":["Joule","Watt","Volt","Ampere"],"c":0},
+{"q":"ক্ষমতা কী?","a":["work/time","force","speed","energy"],"c":0},
+
+{"q":"আয়ন কী?","a":["charged atom","neutral","molecule","none"],"c":0},
+
+{"q":"কাজ কখন হয়?","a":["force+displacement","force","distance","speed"],"c":0},
+
+{"q":"শক্তি সংরক্ষণ সূত্র কী?","a":["energy constant","mass constant","speed constant","none"],"c":0},
+
+{"q":"চাপ কী?","a":["force/area","force","area","mass"],"c":0},
+
+{"q":"বেগ কী?","a":["displacement/time","distance","force","mass"],"c":0},
+
+{"q":"দূরত্ব কী?","a":["path length","speed","time","mass"],"c":0},
+
+{"q":"স্থানান্তর কী?","a":["shortest path","distance","force","none"],"c":0}
+];
+
+const chemistry =[
 {"q":"পরমাণুর কেন্দ্রকে কী বলে?","a":["নিউক্লিয়াস","ইলেকট্রন","প্রোটন","নিউট্রন"],"c":0},
 {"q":"ইলেকট্রনের চার্জ কী?","a":["ধনাত্মক","ঋণাত্মক","নিরপেক্ষ","কিছুই না"],"c":1},
 {"q":"pH স্কেলে ৭ কী নির্দেশ করে?","a":["অম্ল","ক্ষার","নিরপেক্ষ","গ্যাস"],"c":2},
@@ -344,90 +404,106 @@ const questions = {
 {"q":"Atom কী?","a":["smallest unit","biggest","none","gas"],"c":0},
 
 {"q":"Periodic trend কী?","a":["pattern","random","none","gas"],"c":0}
-    ]
+];
+
+const allQuestions = {
+    bangla,
+    english,
+    physics,
+    chemistry
 };
 
 let currentSubject = "";
+let currentData = [];
 let currentQuestion = 0;
 let score = 0;
 let timeLeft = 10;
 let timer;
 
-function startQuiz(subject) {
+/* START QUIZ */
+function startQuiz(subject){
     currentSubject = subject;
+    currentData = allQuestions[subject];
+
     currentQuestion = 0;
     score = 0;
-    document.getElementById("quizBox").style.display = "block";
+
+    document.getElementById("quizBox").style.display="block";
+
     loadQuestion();
 }
 
-function loadQuestion() {
+/* LOAD QUESTION */
+function loadQuestion(){
+
     clearInterval(timer);
     timeLeft = 10;
 
-    let q = questions[currentSubject][currentQuestion];
+    let q = currentData[currentQuestion];
+
     document.getElementById("question").innerText = q.q;
 
-    let optionsHTML = "";
-    q.options.forEach((opt, index) => {
-        optionsHTML += `<button onclick="checkAnswer(${index})">${opt}</button><br>`;
+    let html = "";
+
+    q.a.forEach((opt,i)=>{
+        html += `<button onclick="checkAnswer(${i})">${opt}</button><br>`;
     });
 
-    document.getElementById("options").innerHTML = optionsHTML;
+    document.getElementById("options").innerHTML = html;
     document.getElementById("result").innerText = "";
 
-    timer = setInterval(updateTimer, 1000);
+    timer = setInterval(()=>{
+        document.getElementById("timer").innerText = "Time: " + timeLeft;
+        timeLeft--;
+
+        if(timeLeft < 0){
+            clearInterval(timer);
+            showAnswer();
+            setTimeout(nextQuestion,1500);
+        }
+    },1000);
 }
 
-function updateTimer() {
-    document.getElementById("timer").innerText = "Time: " + timeLeft;
-
-    timeLeft--;
-
-    if (timeLeft < 0) {
-        clearInterval(timer);
-        showCorrectAnswer();
-        nextQuestion();
-    }
-}
-
-function checkAnswer(selected) {
+/* CHECK ANSWER */
+function checkAnswer(i){
     clearInterval(timer);
 
-    let correct = questions[currentSubject][currentQuestion].answer;
+    let correct = currentData[currentQuestion].c;
 
-    if (selected === correct) {
+    if(i === correct){
         score += 5;
-        document.getElementById("result").innerText = "Correct!";
+        document.getElementById("result").innerText = "✔ Correct!";
     } else {
         document.getElementById("result").innerText =
-            "Wrong! Correct: " +
-            questions[currentSubject][currentQuestion].options[correct];
+        "❌ Wrong! Correct: " + currentData[currentQuestion].a[correct];
     }
 
     document.getElementById("score").innerText = "Score: " + score;
 
-    setTimeout(nextQuestion, 1500);
+    setTimeout(nextQuestion,1500);
 }
 
-function showCorrectAnswer() {
-    let correct = questions[currentSubject][currentQuestion].answer;
+/* SHOW ANSWER */
+function showAnswer(){
+    let correct = currentData[currentQuestion].c;
+
     document.getElementById("result").innerText =
-        "Time up! Correct: " +
-        questions[currentSubject][currentQuestion].options[correct];
+    "⏰ Time Up! Correct: " + currentData[currentQuestion].a[correct];
 }
 
-function nextQuestion() {
+/* NEXT QUESTION */
+function nextQuestion(){
+
     currentQuestion++;
 
-    if (score >= 20) {
+    if(score >= 20){
         alert("🎉 You Win!");
         location.reload();
         return;
     }
 
-    if (currentQuestion >= questions[currentSubject].length) {
-        alert("Quiz শেষ! Score: " + score);
+    if(currentQuestion >= currentData.length){
+        alert("Quiz Finished! Score: " + score);
         location.reload();
         return;
     }
