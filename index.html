@@ -447,12 +447,13 @@ let timer;
 /* START QUIZ */
 function startQuiz(subject){
     currentSubject = subject;
-    currentData = allQuestions[subject];
+
+    currentData = shuffleQuestions(allQuestions[subject]); // 🔥 RANDOM FIXED
 
     currentQuestion = 0;
     score = 0;
 
-    document.getElementById("quizBox").style.display="block";
+    document.getElementById("quizBox").style.display = "block";
 
     loadQuestion();
 }
