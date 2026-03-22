@@ -55,7 +55,31 @@ button{
 </div>
 
 <script>
+function shuffleArray(arr){
+    let array = [...arr];
 
+    for(let i = array.length - 1; i > 0; i--){
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    return array;
+}
+
+/* 🔥 Question + Option shuffle system */
+function shuffleQuestions(arr){
+    return shuffleArray(arr).map(q => {
+        let correctAnswer = q.a[q.c];
+
+        let shuffledOptions = shuffleArray(q.a);
+
+        return {
+            q: q.q,
+            a: shuffledOptions,
+            c: shuffledOptions.indexOf(correctAnswer)
+        };
+    });
+}
 const bangla =[
 {"q":"বাংলা সাহিত্যের প্রাচীনতম নিদর্শন কী?","a":["চর্যাপদ","শ্রীকৃষ্ণকীর্তন","মঙ্গলকাব্য","গীতাঞ্জলি"],"c":0},
 {"q":"চর্যাপদের ভাষা কী?","a":["প্রাকৃত","সংস্কৃত","বাংলা","অপভ্রংশ"],"c":3},
