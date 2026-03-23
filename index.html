@@ -642,7 +642,6 @@ const ict =[
 
 {"q":"Binary 1100 এর decimal কত?","a":["12","10","14","11"],"c":0}
 ]
-
 const allQuestions = {
     bangla,
     english,
@@ -657,6 +656,7 @@ let currentQuestion = 0;
 let score = 0;
 let timeLeft = 10;
 let timer;
+
 /* START QUIZ */
 function startQuiz(subject){
     currentSubject = subject;
@@ -666,10 +666,7 @@ function startQuiz(subject){
     currentQuestion = 0;
     score = 0;
 
-    
     document.getElementById("menu").style.display = "none";
-
-    
     document.getElementById("quizBox").style.display = "block";
 
     document.getElementById("subjectTitle").innerText =
@@ -678,10 +675,12 @@ function startQuiz(subject){
     loadQuestion();
 }
 
-/* BACK TO MENU */
+/* 🔙 BACK TO MENU */
 function goBack(){
     document.getElementById("quizBox").style.display = "none";
     document.getElementById("menu").style.display = "block";
+
+    clearInterval(timer); // 🔥 extra safety
 }
 
 /* LOAD QUESTION */
@@ -710,7 +709,7 @@ function loadQuestion(){
         if(timeLeft < 0){
             clearInterval(timer);
             showAnswer();
-            setTimeout(nextQuestion,3000); // 🔥 delay বাড়ানো
+            setTimeout(nextQuestion,3000);
         }
     },1000);
 }
@@ -722,27 +721,22 @@ function checkAnswer(i){
     let correct = currentData[currentQuestion].c;
     let buttons = document.querySelectorAll("#options button");
 
-    // সব button disable
     buttons.forEach(btn => btn.disabled = true);
 
     if(i === correct){
         score += 1;
-
         buttons[i].style.background = "green";
-
         document.getElementById("result").innerText = "✔ Correct!";
     } else {
-
         buttons[i].style.background = "red";
         buttons[correct].style.background = "green";
-
         document.getElementById("result").innerText =
         "❌ Wrong! Correct: " + currentData[currentQuestion].a[correct];
     }
 
     document.getElementById("score").innerText = "Score: " + score;
 
-    setTimeout(nextQuestion,3000); // 🔥 delay বাড়ানো
+    setTimeout(nextQuestion,3000);
 }
 
 /* SHOW ANSWER */
