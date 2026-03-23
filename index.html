@@ -657,19 +657,31 @@ let currentQuestion = 0;
 let score = 0;
 let timeLeft = 10;
 let timer;
-
 /* START QUIZ */
 function startQuiz(subject){
     currentSubject = subject;
 
-    currentData = shuffleQuestions(allQuestions[subject]); // 🔥 random
+    currentData = shuffleQuestions(allQuestions[subject]);
 
     currentQuestion = 0;
     score = 0;
 
+    
+    document.getElementById("menu").style.display = "none";
+
+    
     document.getElementById("quizBox").style.display = "block";
 
+    document.getElementById("subjectTitle").innerText =
+    "Subject: " + subject.toUpperCase();
+
     loadQuestion();
+}
+
+/* BACK TO MENU */
+function goBack(){
+    document.getElementById("quizBox").style.display = "none";
+    document.getElementById("menu").style.display = "block";
 }
 
 /* LOAD QUESTION */
