@@ -448,7 +448,7 @@ let timer;
 function startQuiz(subject){
     currentSubject = subject;
 
-    currentData = shuffleQuestions(allQuestions[subject]); // 🔥 RANDOM FIXED
+    currentData = shuffleQuestions(allQuestions[subject]); // 🔥 random
 
     currentQuestion = 0;
     score = 0;
@@ -484,7 +484,7 @@ function loadQuestion(){
         if(timeLeft < 0){
             clearInterval(timer);
             showAnswer();
-            setTimeout(nextQuestion,1500);
+            setTimeout(nextQuestion,3000); // 🔥 delay বাড়ানো
         }
     },1000);
 }
@@ -494,23 +494,39 @@ function checkAnswer(i){
     clearInterval(timer);
 
     let correct = currentData[currentQuestion].c;
+    let buttons = document.querySelectorAll("#options button");
+
+    // সব button disable
+    buttons.forEach(btn => btn.disabled = true);
 
     if(i === correct){
         score += 1;
+
+        buttons[i].style.background = "green";
+
         document.getElementById("result").innerText = "✔ Correct!";
     } else {
+
+        buttons[i].style.background = "red";
+        buttons[correct].style.background = "green";
+
         document.getElementById("result").innerText =
         "❌ Wrong! Correct: " + currentData[currentQuestion].a[correct];
     }
 
     document.getElementById("score").innerText = "Score: " + score;
 
-    setTimeout(nextQuestion,2500);
+    setTimeout(nextQuestion,3000); // 🔥 delay বাড়ানো
 }
 
 /* SHOW ANSWER */
 function showAnswer(){
     let correct = currentData[currentQuestion].c;
+    let buttons = document.querySelectorAll("#options button");
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    buttons[correct].style.background = "green";
 
     document.getElementById("result").innerText =
     "⏰ Time Up! Correct: " + currentData[currentQuestion].a[correct];
@@ -535,7 +551,6 @@ function nextQuestion(){
 
     loadQuestion();
 }
-
 </script>
 
 </body>
