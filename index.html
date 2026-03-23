@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
@@ -82,6 +83,9 @@ button{
 <button onclick="startQuiz('physics')">Physics</button>
 <button onclick="startQuiz('chemistry')">Chemistry</button>
 
+<!-- 🔥 ICT ADDED -->
+<button onclick="startQuiz('ict')">ICT (একাদশ শ্রেণি)</button>
+
 <div id="quizBox">
     <h2>🔥 Utshos Quiz 🔥</h2>
 
@@ -92,6 +96,7 @@ button{
     <p id="result"></p>
     <p id="score"></p>
 </div>
+    
     
 <script>
 function shuffleArray(arr){
@@ -468,12 +473,168 @@ const chemistry =[
 
 {"q":"Periodic trend কী?","a":["pattern","random","none","gas"],"c":0}
 ];
+const ict =[
+{"q":"ICT এর পূর্ণরূপ কী?","a":["Information and Communication Technology","International Computer Technology","Information and Computing Theory","Internet Communication Technology"],"c":0},
+
+{"q":"কম্পিউটারের মূল ৪টি অংশের মধ্যে কোনটি নয়?","a":["Input Unit","Output Unit","Processing Unit","Cooking Unit"],"c":3},
+
+{"q":"Binary number system এর base কত?","a":["2","8","10","16"],"c":0},
+
+{"q":"Octal number system এর base কত?","a":["2","8","10","16"],"c":1},
+
+{"q":"Hexadecimal system এ কয়টি symbol ব্যবহৃত হয়?","a":["8","10","16","2"],"c":2},
+
+{"q":"CPU এর পূর্ণরূপ কী?","a":["Central Processing Unit","Control Program Unit","Central Print Unit","Computer Processing Unit"],"c":0},
+
+{"q":"AND gate এর output কখন 1 হয়?","a":["যখন সব input 1","যখন যেকোনো একটি input 1","সবসময় 0","সবসময় 1"],"c":0},
+
+{"q":"OR gate এর output কখন 0 হয়?","a":["সব input 0 হলে","সব input 1 হলে","একটি input 1 হলে","কখনোই না"],"c":0},
+
+{"q":"NOT gate কী করে?","a":["মান উল্টায়","যোগ করে","গুণ করে","ভাগ করে"],"c":0},
+
+{"q":"1 Byte সমান কত bit?","a":["4","8","16","2"],"c":1},
+
+{"q":"1 KB সমান কত Byte?","a":["1000","1024","512","2048"],"c":1},
+
+{"q":"Flowchart এ diamond shape কী বোঝায়?","a":["Decision","Process","Input/Output","Start/End"],"c":0},
+
+{"q":"ICT তে RAM এর কাজ কী?","a":["Temporary storage","Permanent storage","Input device","Output device"],"c":0},
+
+{"q":"ROM এর পূর্ণরূপ কী?","a":["Read Only Memory","Random Only Memory","Run Only Memory","Read Output Memory"],"c":0},
+
+{"q":"Logic gate যেটি NOT এর বিপরীত কাজ করে সেটি কোনটি?","a":["Buffer","AND","OR","XOR"],"c":0},
+
+{"q":"Decimal সংখ্যা 10 এর বাইনারি কত?","a":["1010","1001","1100","1111"],"c":0},
+
+{"q":"XOR gate output 1 হয় কখন?","a":["ইনপুট ভিন্ন হলে","ইনপুট একই হলে","সবসময়","কখনো না"],"c":0},
+
+{"q":"Flowchart start/end symbol কোনটি?","a":["Oval","Rectangle","Diamond","Circle"],"c":0},
+
+{"q":"Compiler কী করে?","a":["High level language translate করে","Hardware repair করে","Data store করে","Internet চালায়"],"c":0},
+
+{"q":"Assembler কোন ভাষা translate করে?","a":["Assembly language","High level","Machine only","Natural language"],"c":0},
+
+{"q":"Bit এর পূর্ণরূপ কী?","a":["Binary digit","Basic integer tool","Byte information","Binary interval time"],"c":0},
+
+{"q":"চিত্র: AND gate (A,B → Y) । A=1, B=0 হলে Y কত?","a":["0","1","2","-1"],"c":0},
+
+{"q":"চিত্র: OR gate (A,B → Y)। A=0, B=0 হলে Y কত?","a":["0","1","2","undefined"],"c":0},
+
+{"q":"চিত্র: NOT gate A→Y। A=1 হলে Y?","a":["0","1","A","Undefined"],"c":0},
+
+{"q":"1 nibble সমান কত bit?","a":["4","8","2","16"],"c":0},
+
+{"q":"Memory unit কোনটি?","a":["RAM","CPU","ALU","CU"],"c":0},
+
+{"q":"ALU এর কাজ কী?","a":["Arithmetic & Logic operation","Input process","Output process","Storage"],"c":0},
+
+{"q":"Control Unit কী করে?","a":["Control signal দেয়","Data store করে","Display করে","Print করে"],"c":0},
+
+{"q":"Decimal 15 এর binary কত?","a":["1111","1110","1101","1010"],"c":0},
+
+{"q":"Binary যোগ: 1+1 = ?","a":["10","11","01","00"],"c":0},
+
+{"q":"Internet কী?","a":["Network of networks","Single computer","Software","Hardware"],"c":0},
+
+{"q":"WWW এর পূর্ণরূপ কী?","a":["World Wide Web","World Web Wide","Wide World Web","Web World Wide"],"c":0},
+
+{"q":"Email এর প্রধান কাজ কী?","a":["বার্তা পাঠানো","গেম খেলা","ভিডিও এডিট","কোড রান"],"c":0},
+
+{"q":"Hardware কোনটি?","a":["Monitor","MS Word","Windows","Facebook"],"c":0},
+
+{"q":"Software কোনটি?","a":["Operating System","Keyboard","Mouse","CPU"],"c":0},
+
+{"q":"Operating System এর কাজ কী?","a":["Hardware control করা","Print করা","Scan করা","Network বন্ধ করা"],"c":0},
+
+{"q":"Binary সংখ্যা 1011 এর decimal কত?","a":["11","10","12","9"],"c":0},
+
+{"q":"Logic gate NOT এর symbol কী ধরনের?","a":["Triangle + circle","Square","Diamond","Circle only"],"c":0},
+
+{"q":"Truth table কী দেখায়?","a":["Input-output relation","Hardware price","Software name","Internet speed"],"c":0},
+
+{"q":"AND gate কে কোন symbol বলা যায়?","a":["Multiplication","Addition","Division","Subtraction"],"c":0},
+
+{"q":"OR gate কে কোন symbol বলা যায়?","a":["Addition","Multiplication","Division","Root"],"c":0},
+
+{"q":"XOR gate output 0 কখন হয়?","a":["ইনপুট একই হলে","ইনপুট ভিন্ন হলে","সবসময়","কখনো না"],"c":0},
+
+{"q":"1 MB সমান কত KB?","a":["1024","1000","512","2048"],"c":0},
+
+{"q":"Input device কোনটি?","a":["Keyboard","Monitor","Printer","Speaker"],"c":0},
+
+{"q":"Output device কোনটি?","a":["Printer","Keyboard","Mouse","Scanner"],"c":0},
+
+{"q":"Scanner কী?","a":["Input device","Output device","CPU","Memory"],"c":0},
+
+{"q":"Flowchart rectangle কী বোঝায়?","a":["Process","Decision","Start","End"],"c":0},
+
+{"q":"Internet ব্যবহার হয় কোন প্রযুক্তিতে?","a":["Networking","Mechanical","Chemical","Biological"],"c":0},
+
+{"q":"LAN এর পূর্ণরূপ কী?","a":["Local Area Network","Large Area Network","Light Area Network","Logical Area Network"],"c":0},
+
+{"q":"WAN এর পূর্ণরূপ কী?","a":["Wide Area Network","World Area Network","Web Area Network","Work Area Network"],"c":0},
+
+{"q":"ICT এর প্রধান উদ্দেশ্য কী?","a":["তথ্য আদান-প্রদান","খাবার তৈরি","গাড়ি চালানো","ঘুমানো"],"c":0},
+
+{"q":"Logic gate কয় ধরনের মৌলিক?","a":["3","2","5","7"],"c":0},
+
+{"q":"Universal gate কোনটি?","a":["NAND","AND","OR","NOT"],"c":0},
+
+{"q":"NAND gate output 0 হয় কখন?","a":["সব input 1 হলে","সব input 0 হলে","একটি 1 হলে","কখনো না"],"c":0},
+
+{"q":"NOR gate output 1 হয় কখন?","a":["সব input 0 হলে","সব input 1 হলে","একটি 1 হলে","সবসময়"],"c":0},
+
+{"q":"Flowchart এ arrow কী বোঝায়?","a":["Flow direction","Start","Stop","Input"],"c":0},
+
+{"q":"Binary subtraction এ 1-1 = ?","a":["0","1","2","10"],"c":0},
+
+{"q":"Computer কাজ করে কোন ভিত্তিতে?","a":["Binary","Decimal","Octal","Hex"],"c":0},
+
+{"q":"ASCII কী?","a":["Character encoding","Software","Hardware","Network"],"c":0},
+
+{"q":"Virus কী?","a":["Malicious software","Hardware","Device","Network"],"c":0},
+
+{"q":"Firewall কী করে?","a":["Security দেয়","Speed বাড়ায়","Game চালায়","Print করে"],"c":0},
+
+{"q":"URL এর পূর্ণরূপ কী?","a":["Uniform Resource Locator","Universal Resource Link","Uniform Reference Link","User Resource Locator"],"c":0},
+
+{"q":"Search engine কোনটি?","a":["Google","Word","Excel","Paint"],"c":0},
+
+{"q":"HTML কী?","a":["Markup Language","Programming Language","Hardware","Protocol"],"c":0},
+
+{"q":"ICT ব্যবহার হয় কোথায়?","a":["সব জায়গায়","শুধু স্কুলে","শুধু অফিসে","শুধু হাসপাতালে"],"c":0},
+
+{"q":"Data কী?","a":["Raw facts","Processed output","Software","Hardware"],"c":0},
+
+{"q":"Information কী?","a":["Processed data","Raw data","Hardware","Input"],"c":0},
+
+{"q":"Computer speed unit কোনটি?","a":["Hz","Kg","Liter","Meter"],"c":0},
+
+{"q":"1 Hz মানে কী?","a":["1 cycle per second","1 second per cycle","10 cycle","100 cycle"],"c":0},
+
+{"q":"Logic gate input সাধারণত কয়টি?","a":["1 বা 2","10","100","0"],"c":0},
+
+{"q":"Half adder কী করে?","a":["Binary যোগ","গুণ","ভাগ","বিয়োগ"],"c":0},
+
+{"q":"Full adder কী করে?","a":["Carry সহ যোগ","শুধু যোগ","শুধু গুণ","শুধু বিয়োগ"],"c":0},
+
+{"q":"Cache memory কোথায় থাকে?","a":["CPU এর কাছে","Hard disk এ","Printer এ","Scanner এ"],"c":0},
+
+{"q":"Secondary memory কোনটি?","a":["Hard disk","RAM","CPU","ALU"],"c":0},
+
+{"q":"Primary memory কোনটি?","a":["RAM","Hard disk","DVD","Pen drive"],"c":0},
+
+{"q":"Bit pattern 0000 এর decimal কত?","a":["0","1","2","4"],"c":0},
+
+{"q":"Binary 1100 এর decimal কত?","a":["12","10","14","11"],"c":0}
+]
 
 const allQuestions = {
     bangla,
     english,
     physics,
-    chemistry
+    chemistry,
+    ict
 };
 
 let currentSubject = "";
