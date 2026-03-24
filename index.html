@@ -652,7 +652,7 @@ let currentSubject = "";
 let currentData = [];
 let currentQuestion = 0;
 let score = 0;
-let timeLeft = 10;
+let timeLeft = 15;
 let timer;
 
 /* START QUIZ */
@@ -685,7 +685,7 @@ function goBack(){
 function loadQuestion(){
 
     clearInterval(timer);
-    timeLeft = 10;
+    timeLeft = 15;
 
     let q = currentData[currentQuestion];
 
