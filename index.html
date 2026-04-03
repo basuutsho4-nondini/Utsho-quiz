@@ -81,8 +81,9 @@ button:hover{
 
 <body>
 
-<h1>Welcome to Utsha's Quiz Website</h1>
-<h2>পছন্দের বিষয় বেছে নাও ⬇️</h2>
+<h1 id="title">👑 Utshos Kingdom 👑</h1>
+
+<h2 id="subtitle">পছন্দের বিষয় বেছে নাও ⬇️</h2>
 
 <!-- 🔵 MENU START -->
 <div id="menu">     
@@ -825,6 +826,10 @@ function startQuiz(subject){
     document.getElementById("menu").style.display = "none";
     document.getElementById("quizBox").style.display = "block";
 
+   
+    document.getElementById("title").style.display = "none";
+    document.getElementById("subtitle").style.display = "none";
+
     document.getElementById("subjectTitle").innerText =
     "Subject: " + subject.toUpperCase();
 
@@ -836,11 +841,14 @@ function goBack(){
     document.getElementById("quizBox").style.display = "none";
     document.getElementById("menu").style.display = "block";
 
+    document.getElementById("title").style.display = "block";
+    document.getElementById("subtitle").style.display = "block";
+
     clearInterval(timer); // 🔥 extra safety
 }
 
 /* LOAD QUESTION */
-    function loadQuestion(){
+function loadQuestion(){
 
     clearInterval(timer);
     timeLeft = 15;
@@ -852,7 +860,6 @@ function goBack(){
     let html = "";
 
     q.a.forEach((opt,i)=>{
-       
         html += `<button onclick="checkAnswer(${i})">${opt}</button><br>`;
     });
 
@@ -869,7 +876,7 @@ function goBack(){
             setTimeout(nextQuestion,3000);
         }
     },1000);
-    }
+}
 
 /* CHECK ANSWER */
 function checkAnswer(i){
